@@ -1,26 +1,25 @@
 import React from "react";
 
-import { useField } from "react-final-form";
-
-import { Select as SelectAntd } from "antd";
-
-const { Option } = SelectAntd;
-
 type SelectProps = {
   name: string;
   options: { value: string; label: string }[];
+  value?: number | string;
+  onChange: (name: string, value: number | string) => void;
 };
 
-const Select: React.FC<SelectProps> = ({ name, options }) => {
-  const field = useField<number>(name);
+const Select: React.FC<SelectProps> = ({ name, options, value, onChange }) => {
   return (
-    <SelectAntd {...field.input}>
+    <select
+      value={value}
+      onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+        onChange(name, event.target.value);
+      }}>
       {options.map(({ value, label }) => (
-        <Option value={value} key={value}>
+        <option value={value} key={value}>
           {label}
-        </Option>
+        </option>
       ))}
-    </SelectAntd>
+    </select>
   );
 };
 

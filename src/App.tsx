@@ -6,9 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact>
-          <Calculate />
-        </Route>
+        <Route path='/' exact component={Calculate} />
       </Switch>
     </BrowserRouter>
   );
